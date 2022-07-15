@@ -1,6 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import SeasonDisplay from "./SeasonDisplay";
+import Spinner from "./Spinner";
+
+const element = document.getElementById("root");
+const root = ReactDOM.createRoot(element);
 
 class App extends React.Component {
   state = { latitude: null, errorMessage: "" };
@@ -19,8 +23,8 @@ class App extends React.Component {
     if (!this.state.errorMessage && this.state.latitude) {
       return <SeasonDisplay latitude={this.state.latitude} />;
     }
-    return <div>Loading...</div>;
+    return <Spinner message="Please accept location request." />;
   }
 }
 
-ReactDOM.render(<App />, document.querySelector("#root"));
+root.render(<App />);
